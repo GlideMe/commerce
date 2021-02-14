@@ -282,7 +282,7 @@ class PaymentsController extends BaseFrontEndController
         }
 
         // Check email address exists on order.
-        if (!$order->email) {
+        if (!$order->email && ($gateway->handle !== 'paypalCheckout')) {
             $customError = Plugin::t('No customer email address exists on this cart.');
 
             if ($request->getAcceptsJson()) {
