@@ -493,11 +493,12 @@ class OrderStatuses extends Component
 
         // todo: remove schema version condition after next beakpoint
         $schemaVersion = Plugin::getInstance()->schemaVersion;
-        if (version_compare($schemaVersion, '2.1.09', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if (version_compare($schemaVersion, '2.1.09', '>=')) {
             if (!$withTrashed) {
                 $query->where(['dateDeleted' => null]);
             }
-        }
+        //}
         return $query;
     }
 

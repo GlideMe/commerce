@@ -1146,9 +1146,10 @@ class Discounts extends Component
             ->orderBy(['sortOrder' => SORT_ASC]);
 
         $commerce = Craft::$app->getPlugins()->getStoredPluginInfo('commerce');
-        if ($commerce && version_compare($commerce['version'], '3.1', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '3.1', '>=')) {
             $query->addSelect('[[discounts.appliedTo]]');
-        }
+        //}
 
         return $query;
     }

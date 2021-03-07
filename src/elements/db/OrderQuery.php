@@ -950,27 +950,31 @@ class OrderQuery extends ElementQuery
         // TODO: remove after next breakpoint
         $commerce = Craft::$app->getPlugins()->getStoredPluginInfo('commerce');
 
-        if ($commerce && version_compare($commerce['version'], '2.1.3', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '2.1.3', '>=')) {
             $this->query->addSelect(['commerce_orders.registerUserOnOrderComplete']);
-        }
+        //}
 
-        if ($commerce && version_compare($commerce['version'], '3.0', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '3.0', '>=')) {
             $this->query->addSelect(['commerce_orders.recalculationMode']);
             $this->query->addSelect(['commerce_orders.origin']);
 
             if ($this->origin) {
                 $this->subQuery->andWhere(Db::parseParam('commerce_orders.origin', $this->origin));
             }
-        }
+        //}
 
-        if ($commerce && version_compare($commerce['version'], '3.0.6', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '3.0.6', '>=')) {
             $this->query->addSelect(['commerce_orders.dateAuthorized']);
             if ($this->dateAuthorized) {
                 $this->subQuery->andWhere(Db::parseDateParam('commerce_orders.dateAuthorized', $this->datePaid));
             }
-        }
+        //}
 
-        if ($commerce && version_compare($commerce['version'], '3.0.7', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '3.0.7', '>=')) {
             $this->query->addSelect([
                 'storedTotalPrice' => 'commerce_orders.totalPrice',
                 'storedTotalPaid' => 'commerce_orders.totalPaid',
@@ -980,7 +984,7 @@ class OrderQuery extends ElementQuery
                 'storedTotalTax' => 'commerce_orders.totalTax',
                 'storedTotalTaxIncluded' => 'commerce_orders.totalTaxIncluded',
             ]);
-        }
+        //}
 
         if ($this->number !== null) {
             // If it's set to anything besides a non-empty string, abort the query
