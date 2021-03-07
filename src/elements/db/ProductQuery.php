@@ -526,13 +526,14 @@ class ProductQuery extends ElementQuery
 
         // TODO: remove after next breakpoint
         $commerce = Craft::$app->getPlugins()->getStoredPluginInfo('commerce');
-        if ($commerce && version_compare($commerce['version'], '2.0.0-beta.5', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '2.0.0-beta.5', '>=')) {
             $this->query->addSelect(['commerce_products.availableForPurchase']);
 
             if ($this->availableForPurchase !== null) {
                 $this->subQuery->andWhere(['commerce_products.availableForPurchase' => $this->availableForPurchase]);
             }
-        }
+        //}
 
         if ($this->postDate) {
             $this->subQuery->andWhere(Db::parseDateParam('commerce_products.postDate', $this->postDate));

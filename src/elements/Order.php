@@ -1144,9 +1144,10 @@ class Order extends Element
 
         $attributes = parent::datetimeAttributes();
 
-        if ($commerce && version_compare($commerce['version'], '3.0.6', '>=')) {
+        // WCWEB-223 - dev- branch fails check
+        //if ($commerce && version_compare($commerce['version'], '3.0.6', '>=')) {
             $attributes[] = 'dateAuthorized';
-        }
+        //}
 
         $attributes[] = 'datePaid';
         $attributes[] = 'dateOrdered';
