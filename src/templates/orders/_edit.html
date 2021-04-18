@@ -182,6 +182,7 @@
     {% include 'commerce/orders/_transactions' %}
     {% include 'commerce/orders/_history' %}
 
+    {% hook "cp.commerce.order.edit.custom-tab" %}
 {% endblock %}
 
 {% js %}
